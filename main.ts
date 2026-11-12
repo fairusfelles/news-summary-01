@@ -2,5 +2,6 @@
 import { readFileSync, writeFileSync } from 'node:fs';
 
 const outputDir = process.env.MAKEFUN_OUTPUT_DIR || '/output';
-const summaryText = readFileSync('summary.txt', 'utf8');
+const summaryPath = new URL('summary.txt', import.meta.url);
+const summaryText = readFileSync(summaryPath, 'utf8');
 writeFileSync(`${outputDir}/entry.txt`, summaryText);
