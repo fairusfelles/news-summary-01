@@ -1,4 +1,6 @@
-import { copyFileSync } from 'node:fs';
-import { join } from 'node:path';
+// Read summary.txt and write it to entry.txt in the output directory
+import { readFileSync, writeFileSync } from 'node:fs';
 
-copyFileSync(new URL('./summary.txt', import.meta.url), join(process.env.MAKEFUN_OUTPUT_DIR ?? '/output', 'entry.txt'));
+const outputDir = process.env.MAKEFUN_OUTPUT_DIR || '/output';
+const summaryText = readFileSync('summary.txt', 'utf8');
+writeFileSync(`${outputDir}/entry.txt`, summaryText);
